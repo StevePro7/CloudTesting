@@ -23,11 +23,11 @@ sudo fuser -k 5000/tcp
 netstat -tulnap | grep 5000
 ```
 ```
-04. Port in use
+04. Testing
 curl http://localhost:5000
 ```
 ```
 05. Cleanup
 docker stop $(docker ps -q)
-docker rm $(docker ps -aq)
+docker rmi $(docker images -qa) --force
 ```
