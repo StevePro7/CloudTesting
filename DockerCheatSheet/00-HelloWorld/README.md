@@ -2,7 +2,7 @@
 ###### 31/08/2021
 ```
 01. Hello World
-docker run hello-world```
+docker run hello-world
 ```
 ```
 02. Getting Started
