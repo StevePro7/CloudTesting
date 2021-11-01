@@ -1,0 +1,5 @@
+Dockerfile linguist-language=Dockerfile
+*.py linguist-language=Python
+*.go linguist-language=Go
+*.cpp linguist-language=C++
+README.md linguist-language=HTML
