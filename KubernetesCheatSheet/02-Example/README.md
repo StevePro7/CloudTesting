@@ -21,8 +21,8 @@ kind create cluster
 docker build -t stevepro/testwebapi:2.0 .
 kind load docker-image stevepro/testwebapi:2.0
 kubectl apply -f Kubernetes.yaml
-kubectl get services
 kubectl get nodes -o wide
+kubectl get services
 curl http://172.18.0.2:31196/test
 kubectl delete -f Kubernetes.yaml
 kind delete cluster
