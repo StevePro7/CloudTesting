@@ -11,5 +11,5 @@ FROM alpine:latest
 RUN apk --no-cache add ca-certificates
 COPY --from=builder /go/bin/app /app
 ENTRYPOINT /app
-LABEL Name=01example Version=0.0.1
+LABEL Name=02example Version=0.0.1
 EXPOSE 8081
