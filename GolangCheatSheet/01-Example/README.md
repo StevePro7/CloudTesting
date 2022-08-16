@@ -49,7 +49,7 @@ curl http://localhost:8081/test/artists.php?artists.php?artist=0+div+1+union%23f
 minikube start
 minikube docker-env
 eval $(minikube -p minikube docker-env)
-docker build -t stevepro/testwebapi:1.0 .
+docker build -t stevepro/testwebapi:3.0 .
 kubectl apply -f Kubernetes.yaml
 minikube service testwebapi-service --url
 curl http://192.168.49.2:30799/test
