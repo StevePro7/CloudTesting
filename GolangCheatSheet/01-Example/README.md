@@ -29,7 +29,10 @@ go get "github.com/gorilla/mux"
 go mod tidy
 
 go run main.go
-curl http://localhost:8081/test
+curl http://localhost:8081/
+curl http://localhost:8081/test/artists.php
+curl http://localhost:8081/test/artists.php?artists.php?artist=0+div+1+union%23foo*%2F*bar%0D%0Aselect%23foo%0D%0A1%2C2%2Ccurrent_user
+
 ```
 ```
 02. Docker
@@ -37,7 +40,9 @@ Ctrl + Shift + P | Add Docker Files to Workspace
 Go | 8081 | No
 Right click Dockerfile | Build image... | 01example:latest
 Right click 01example:latest | Run interactive
-curl http://localhost:8081/test
+curl http://localhost:8081/
+curl http://localhost:8081/test/artists.php
+curl http://localhost:8081/test/artists.php?artists.php?artist=0+div+1+union%23foo*%2F*bar%0D%0Aselect%23foo%0D%0A1%2C2%2Ccurrent_user
 ```
 ```
 03. Kubernetes
