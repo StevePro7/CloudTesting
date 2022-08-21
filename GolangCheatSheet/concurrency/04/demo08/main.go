@@ -2,7 +2,6 @@ package main
 
 import (
 	"concurrencytesting/book"
-	"fmt"
 	"github.com/nikandfor/goid"
 	log "github.com/sirupsen/logrus"
 	"math/rand"
@@ -19,6 +18,7 @@ func main() {
 	cacheCh := make(chan book.Book)
 	dbCh := make(chan book.Book)
 
+	log.Printf("[%d] starting.", goid.ID())
 	for i := 0; i < 2; i++ {
 		id := rnd.Intn(10) + 1
 		wg.Add(2)
@@ -26,6 +26,7 @@ func main() {
 		// Send only channel
 		go func(id int, wg *sync.WaitGroup, m *sync.RWMutex, ch chan<- book.Book) {
 			if b, ok := queryCache(id, m); ok {
+				log.Printf("[%d] goroutine send Cache '%s'", goid.ID(), b.Title)
 				ch <- b
 			}
 			wg.Done()
@@ -34,6 +35,7 @@ func main() {
 		// Send only channel
 		go func(id int, wg *sync.WaitGroup, m *sync.RWMutex, ch chan<- book.Book) {
 			if b, ok := queryDatabase(id, m); ok {
+				log.Printf("[%d] goroutine send dBase '%s'", goid.ID(), b.Title)
 				m.Lock()
 				cache[id] = b
 				m.Unlock()
@@ -46,13 +48,11 @@ func main() {
 		go func(cacheCh, dbCh <-chan book.Book) {
 			select {
 			case b := <-cacheCh:
-				fmt.Println("from cache")
-				fmt.Println(b)
+				log.Printf("[%d] goroutine recd Cache '%s'", goid.ID(), b.Title)
 				<-dbCh
 
 			case b := <-dbCh:
-				fmt.Println("from database")
-				fmt.Println(b)
+				log.Printf("[%d] goroutine recd dBase '%s'", goid.ID(), b.Title)
 			}
 		}(cacheCh, dbCh)
 
