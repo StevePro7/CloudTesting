@@ -20,7 +20,8 @@ func main() {
 	cacheCh := make(chan book.Book)
 	dbCh := make(chan book.Book)
 
-	for i := 0; i < 2; i++ {
+	log.Printf("[%d] starting.", goid.ID())
+	for i := 0; i < 3; i++ {
 		id := rnd.Intn(10) + 1
 		wg.Add(2)
 
@@ -36,10 +37,10 @@ func main() {
 		// Send only channel	Database
 		go func(id int, wg *sync.WaitGroup, m *sync.RWMutex, ch chan<- book.Book) {
 			if b, ok := queryDatabase(id, m); ok {
+				log.Printf("[%d] goroutine send dBase '%s'", goid.ID(), b.Title)
 				m.Lock()
 				cache[id] = b
 				m.Unlock()
-				log.Printf("[%d] goroutine send dBase '%s'", goid.ID(), b.Title)
 				ch <- b
 			}
 			wg.Done()
@@ -58,6 +59,8 @@ func main() {
 			}
 
 		}(cacheCh, dbCh)
+
+		time.Sleep(150 * time.Millisecond)
 	}
 
 	log.Printf("[%d] running.", goid.ID())

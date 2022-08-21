@@ -2,19 +2,22 @@ package main
 
 import (
 	"concurrencytesting/book"
-	"github.com/nikandfor/goid"
-	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"sync"
 	"time"
+
+	"github.com/nikandfor/goid"
+	log "github.com/sirupsen/logrus"
 )
 
 var cache = map[int]book.Book{}
 var rnd = rand.New(rand.NewSource(time.Now().UnixNano()))
 
 func main() {
+
 	wg := &sync.WaitGroup{}
 	m := &sync.RWMutex{}
+
 	cacheCh := make(chan book.Book)
 	dbCh := make(chan book.Book)
 
@@ -46,6 +49,7 @@ func main() {
 
 		// Receive only channels
 		go func(cacheCh, dbCh <-chan book.Book) {
+
 			select {
 			case b := <-cacheCh:
 				log.Printf("[%d] goroutine recd Cache '%s'", goid.ID(), b.Title)
@@ -54,6 +58,7 @@ func main() {
 			case b := <-dbCh:
 				log.Printf("[%d] goroutine recd dBase '%s'", goid.ID(), b.Title)
 			}
+
 		}(cacheCh, dbCh)
 
 		time.Sleep(150 * time.Millisecond)
