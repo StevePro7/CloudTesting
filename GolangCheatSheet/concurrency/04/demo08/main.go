@@ -22,7 +22,7 @@ func main() {
 	dbCh := make(chan book.Book)
 
 	log.Printf("[%d] starting.", goid.ID())
-	for i := 0; i < 2; i++ {
+	for i := 0; i < 20; i++ {
 		id := rnd.Intn(10) + 1
 		wg.Add(2)
 
