@@ -1,6 +1,7 @@
 package main
 
 import (
+	"concurrencytesting/book"
 	"github.com/nikandfor/goid"
 	"math/rand"
 	"time"

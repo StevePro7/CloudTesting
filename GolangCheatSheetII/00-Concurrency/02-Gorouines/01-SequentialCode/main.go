@@ -1,10 +1,12 @@
 package main
 
 import (
-	"fmt"
+	"concurrencytesting/book"
 	"github.com/nikandfor/goid"
 	"math/rand"
 	"time"
+	
+	log "github.com/sirupsen/logrus"
 )
 
 var cache = map[int]Book{}
@@ -31,20 +33,20 @@ func main() {
 
 	for i :=0; i < 2; i++ {
 		id := rnd.Intn(10) + 1
-		fmt.Printf("[%d] ID:%d\n", goid.ID(), id)
+		log.Printf("[%d] ID:%d\n", goid.ID(), id)
 		if b, ok := queryCache(id); ok {
-			fmt.Printf("[%d] from cache\n", goid.ID())
-			fmt.Printf("[%d] Book '%v'\n", goid.ID(), b.Title)
+			log.Printf("[%d] from cache\n", goid.ID())
+			log.Printf("[%d] Book '%v'\n", goid.ID(), b.Title)
 			continue
 		}
 
 		if b, ok :=queryDatabase(id); ok {
-			fmt.Printf("[%d] from database\n", goid.ID())
-			fmt.Printf("[%d] Book '%v'\n", goid.ID(), b.Title)
+			log.Printf("[%d] from database\n", goid.ID())
+			log.Printf("[%d] Book '%v'\n", goid.ID(), b.Title)
 			continue
 		}
 
-		fmt.Printf("[%d] Book not found id '%v'\n", goid.ID(), id)
+		log.Printf("[%d] Book not found id '%v'\n", goid.ID(), id)
 		time.Sleep(150 * time.Millisecond)
 	}
 
