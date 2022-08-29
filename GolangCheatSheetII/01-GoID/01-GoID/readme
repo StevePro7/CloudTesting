@@ -1,0 +1,15 @@
+readme
+04/07/2021
+
+https://www.youtube.com/watch?v=xmWqd1LBa4E
+
+
+Reference:
+https://pkg.go.dev/github.com/nikandfor/goid
+
+Don't think you are meant to use this package
+go get github.com/nikandfor/goid
+go mod tidy
+
+
+fmt.Fprintln(os.Stdout, goid.ID(), s)
