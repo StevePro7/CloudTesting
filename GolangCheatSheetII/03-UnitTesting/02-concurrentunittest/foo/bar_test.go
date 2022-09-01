@@ -7,7 +7,9 @@ import (
 func TestTrack(t *testing.T) {
 
 	doneChan := make(chan struct{}, 1)
-	doneFunc = func() { doneChan <- struct{}{} }
+	doneFunc = func() {
+		doneChan <- struct{}{}
+	}
 	defer func() {
 		doneFunc = func() {}
 	}()
@@ -46,13 +48,25 @@ func TestUntrack(t *testing.T) {
 }
 
 func TestTrackUntrack(t *testing.T) {
+
+	doneChan := make(chan struct{}, 1)
+	doneFunc = func() {
+		doneChan <- struct{}{}
+	}
+	defer func() {
+		doneFunc = func() {}
+	}()
+
 	h := "name"
 
 	Track(h)
+	<-doneChan
+
 	Untrack(h)
+	<-doneChan
 
 	a := sliceContains(hashtags, h)
-	if !a {
+	if a {
 		t.Errorf("not contains2")
 	}
 }
