@@ -39,10 +39,6 @@ func init() {
 	}()
 }
 
-func Splat() int {
-	return 7
-}
-
 // https://stackoverflow.com/questions/34070369/removing-a-string-from-a-slice-in-go
 func sliceContains(s []string, e string) bool {
 	for _, a := range s {

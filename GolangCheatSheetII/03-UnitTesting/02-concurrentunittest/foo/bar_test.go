@@ -23,21 +23,24 @@ func TestTrack(t *testing.T) {
 	}
 }
 
-//func TestTrackOld(t *testing.T) {
-//	h := "name"
-//	Track(h)
-//	a := sliceContains(hashtags, h)
-//	if !a {
-//		t.Errorf("not contains")
-//	}
-//}
 
 func TestUntrack(t *testing.T) {
+	doneChan := make(chan struct{}, 1)
+	doneFunc = func() {
+		doneChan <- struct{}{}
+	}
+	defer func() {
+		doneFunc = func() {}
+	}()
+
 	name := "name"
 	hashtags = []string{name, "surname"}
+
 	Untrack(name)
+	<-doneChan
+
 	a := sliceContains(hashtags, name)
-	if !a {
+	if a {
 		t.Errorf("not contains")
 	}
 }
@@ -51,12 +54,5 @@ func TestTrackUntrack(t *testing.T) {
 	a := sliceContains(hashtags, h)
 	if !a {
 		t.Errorf("not contains2")
-	}
-}
-
-func TestSplat(t *testing.T) {
-	x := Splat()
-	if 4 != x {
-		t.Errorf("not equal")
 	}
 }
