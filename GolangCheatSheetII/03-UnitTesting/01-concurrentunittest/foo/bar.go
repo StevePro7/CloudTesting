@@ -30,7 +30,7 @@ func init() {
 					doneFunc()
 				}
 			case h := <-untrackChan:
-				if !sliceContains(hashtags, h) {
+				if sliceContains(hashtags, h) {
 					hashtags = sliceRemove(hashtags, h)
 					doneFunc()
 				}
