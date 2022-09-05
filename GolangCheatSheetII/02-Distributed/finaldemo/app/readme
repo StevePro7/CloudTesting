@@ -1,0 +1,17 @@
+readme
+03-Sep-2022
+
+
+01.
+Launch Terminal
+cd /GitHub/StevePro7/CloudTesting/GolangCheatSheet/distributed/finaldemo/app/cmd/registryservice
+go run main.go
+
+02.
+Launch Terminal
+cd /GitHub/StevePro7/CloudTesting/GolangCheatSheet/distributed/finaldemo/app/cmd/logservice
+go run main.go
+
+IMPORTANT
+stop logservice before registryservice
+otherwise logservice will panic
