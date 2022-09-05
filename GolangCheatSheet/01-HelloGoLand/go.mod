@@ -1,3 +1,3 @@
-module HelloGLand
+module HelloGoLand
 
 go 1.18
