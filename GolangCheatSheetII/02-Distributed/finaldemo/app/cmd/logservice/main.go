@@ -10,7 +10,6 @@ import (
 )
 
 func main() {
-	//log.Run("./app.log")
 
 	host, port := "localhost", "4000"
 	serviceAddress := fmt.Sprintf("http://%v:%v", host, port)
@@ -33,5 +32,4 @@ func main() {
 
 	<-ctx.Done()
 	fmt.Println("Shutting down log service")
-
 }

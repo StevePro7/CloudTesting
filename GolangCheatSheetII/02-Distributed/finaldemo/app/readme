@@ -4,12 +4,12 @@ readme
 
 01.
 Launch Terminal
-cd /GitHub/StevePro7/CloudTesting/GolangCheatSheet/distributed/finaldemo/app/cmd/registryservice
+cd ~/app/cmd/registryservice
 go run main.go
 
 02.
 Launch Terminal
-cd /GitHub/StevePro7/CloudTesting/GolangCheatSheet/distributed/finaldemo/app/cmd/logservice
+cd ~/app/cmd/logservice
 go run main.go
 
 IMPORTANT
