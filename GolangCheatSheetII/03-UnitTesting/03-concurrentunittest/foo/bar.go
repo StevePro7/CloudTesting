@@ -6,11 +6,10 @@ import (
 	"time"
 )
 
-
 var (
 	trackChan   = make(chan string)
 	untrackChan = make(chan string)
-	doneFunc    = func() {}
+	DoneFunc    = func() {}
 )
 
 func Track(hs ...string) {
@@ -39,14 +38,14 @@ func init() {
 					log.Printf("[%d] select hashtags append '%v'", goid.ID(), h)
 					hashtags = append(hashtags, h)
 					log.Printf("[%d] select hashtags delays", goid.ID())
-					time.Sleep(5 * time.Second)
-					doneFunc()
+					time.Sleep(2 * time.Second)
+					DoneFunc()
 				}
 			case h := <-untrackChan:
 				log.Printf("[%d] select Untrack '%v'", goid.ID(), h)
 				if sliceContains(hashtags, h) {
 					hashtags = sliceRemove(hashtags, h)
-					doneFunc()
+					DoneFunc()
 				}
 			}
 		}
