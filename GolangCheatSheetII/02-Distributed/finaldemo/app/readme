@@ -14,4 +14,5 @@ go run main.go
 
 IMPORTANT
 stop logservice before registryservice
+i.e. Press [ ENTER ]
 otherwise logservice will panic
