@@ -1,0 +1,17 @@
+TODO
+26-Sep-2022
+
+01.
+~/GitHub/StevePro7/CloudTesting/GolangCheatSheetII/04-Cgo/01-Example/scripts
+chmod +x modsec.sh
+
+
+~/GitHub/StevePro7/CloudTesting/GolangCheatSheetII/04-Cgo/02-Example/scripts
+chmod +x modsec.sh
+
+
+
+curl http://localhost:8081/
+curl http://localhost:8081/test/artists.php
+curl http://localhost:8081/test/artists.php?artists.php?artist=0+div+1+union%23foo*%2F*bar%0D%0Aselect%23foo%0D%0A1%2C2%2Ccurrent_user
+
