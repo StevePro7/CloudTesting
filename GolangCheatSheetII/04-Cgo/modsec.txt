@@ -33,3 +33,16 @@ root@64c78e6a5b27:/usr/local/modsecurity/lib#
 
 03.
 k8s
+root@testwebapi-787c48fd87-s2p6z:/app# cd /usr/local/modsecurity/lib
+root@testwebapi-787c48fd87-s2p6z:/usr/local/modsecurity/lib# ls -l
+total 334844
+-rw-r--r-- 1 root root 269223872 Sep 26 13:36 libmodsecurity.a
+-rwxr-xr-x 1 root root      1079 Sep 26 13:36 libmodsecurity.la
+lrwxrwxrwx 1 root root        23 Sep 26 13:36 libmodsecurity.so -> libmodsecurity.so.3.0.6
+lrwxrwxrwx 1 root root        23 Sep 26 13:36 libmodsecurity.so.3 -> libmodsecurity.so.3.0.6
+-rwxr-xr-x 1 root root  73634752 Sep 26 13:36 libmodsecurity.so.3.0.6
+drwxr-xr-x 2 root root      4096 Sep 26 13:36 pkgconfig
+root@testwebapi-787c48fd87-s2p6z:/usr/local/modsecurity/lib# 
+
+./modsec-rules-check /app/rules/crs-setup.conf 
+

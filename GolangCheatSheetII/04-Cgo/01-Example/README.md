@@ -63,7 +63,10 @@ minikube service testwebapi-service --url
 curl http://192.168.49.2:32743/
 curl http://192.168.49.2:32743/test/artists.php
 curl http://192.168.49.2:32743/test/artists.php?artists.php?artist=0+div+1+union%23foo*%2F*bar%0D%0Aselect%23foo%0D%0A1%2C2%2Ccurrent_user
-kubectl logs -f testwebapi-787c48fd87-shc6k 
+
+kubectl logs -f testwebapi-787c48fd87-shc6k
+kubectl exec -it testwebapi-787c48fd87-s2p6z -- bash 
+
 kubectl delete -f Kubernetes.yaml
 minikube stop
 ```
