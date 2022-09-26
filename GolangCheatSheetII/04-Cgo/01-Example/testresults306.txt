@@ -1,0 +1,59 @@
+3.0.6
+26-Sep-2022
+
+01. local
+2022/09/26 13:47:42 starting smart reverse proxy on [:8081]
+2022/09/26 13:47:42 Init Mod Sec
+
+2022/09/26 13:47:50 req.URL /
+URI=/
+intervention=0
+2022/09/26 13:47:50 
+========
+modsec()=%!i(int=0), elapsed: 953.815µs
+
+2022/09/26 13:48:04 req.URL /test/artists.php
+URI=/test/artists.php
+intervention=0
+2022/09/26 13:48:04 
+========
+modsec()=%!i(int=0), elapsed: 823.12µs
+2022/09/26 13:48:04 testHandler
+2022/09/26 13:48:04 https://www.lightbase.io/freeforlife
+
+2022/09/26 13:48:27 req.URL /test/artists.php?artists.php?artist=0+div+1+union%23foo*%2F*bar%0D%0Aselect%23foo%0D%0A1%2C2%2Ccurrent_user
+URI=/test/artists.php?artists.php?artist=0+div+1+union%23foo*%2F*bar%0D%0Aselect%23foo%0D%0A1%2C2%2Ccurrent_user
+Server log callback is not set -- [client 127.0.0.1] ModSecurity: Warning. detected SQLi using libinjection. [file "rules/REQUEST-942-APPLICATION-ATTACK-SQLI.conf"] [line "45"] [id "942100"] [rev ""] [msg ""] [data ""] [severity "0"] [ver "OWASP_CRS/3.3.2"] [maturity "0"] [accuracy "0"] [hostname "127.0.0.1"] [uri "/test/artists.php"] [unique_id "1664196507"] [ref "v45,53"] [hostname "127.0.0.1"] [uri "/test/artists.php"] [unique_id "1664196507"]
+intervention=1
+2022/09/26 13:48:27 
+========
+modsec()=%!i(int=1), elapsed: 663.056µs
+2022/09/26 13:48:27 ==== Mod Security Blocked! ====
+
+
+
+02. docker
+2022/09/26 13:04:19 req.URL /
+URI=/
+intervention=0
+2022/09/26 13:04:19 
+========
+modsec()=%!i(int=0), elapsed: 1.020651ms
+
+2022/09/26 13:04:41 req.URL /test/artists.php
+URI=/test/artists.php
+intervention=0
+2022/09/26 13:04:41 
+========
+modsec()=%!i(int=0), elapsed: 997.845µs
+2022/09/26 13:04:41 testHandler
+2022/09/26 13:04:41 https://www.lightbase.io/freeforlife
+
+2022/09/26 13:04:49 req.URL /test/artists.php?artists.php?artist=0+div+1+union%23foo*%2F*bar%0D%0Aselect%23foo%0D%0A1%2C2%2Ccurrent_user
+URI=/test/artists.php?artists.php?artist=0+div+1+union%23foo*%2F*bar%0D%0Aselect%23foo%0D%0A1%2C2%2Ccurrent_user
+Server log callback is not set -- [client 127.0.0.1] ModSecurity: Warning. detected SQLi using libinjection. [file "rules/REQUEST-942-APPLICATION-ATTACK-SQLI.conf"] [line "45"] [id "942100"] [rev ""] [msg ""] [data ""] [severity "0"] [ver "OWASP_CRS/3.3.2"] [maturity "0"] [accuracy "0"] [hostname "127.0.0.1"] [uri "/test/artists.php"] [unique_id "1664197489"] [ref "v45,53"] [hostname "127.0.0.1"] [uri "/test/artists.php"] [unique_id "1664197489"]
+intervention=1
+2022/09/26 13:04:49 
+========
+modsec()=%!i(int=1), elapsed: 860.737µs
+2022/09/26 13:04:49 ==== Mod Security Blocked! ====
