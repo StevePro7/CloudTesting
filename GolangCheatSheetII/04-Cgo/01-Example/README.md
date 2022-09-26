@@ -45,6 +45,7 @@ docker build --pull --rm -f "Dockerfile" -t 01example:latest "."
 Right click 01example:latest | Run interactive
 OR
 docker run -d -p 8081:8081 01example:latest
+        
 curl http://localhost:8081/
 curl http://localhost:8081/test/artists.php
 curl http://localhost:8081/test/artists.php?artists.php?artist=0+div+1+union%23foo*%2F*bar%0D%0Aselect%23foo%0D%0A1%2C2%2Ccurrent_user
