@@ -2,7 +2,7 @@
 ###### xx/xx/2021
 ```
 01. Locally
-o mod init testwebapi
+go mod init testwebapi
 touch main.go
 touch Dockerfile
 touch Kuberenetes.yaml

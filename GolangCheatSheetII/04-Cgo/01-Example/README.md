@@ -1,10 +1,12 @@
 ##### README.md
-15/11/2022
+###### 15/11/2022
 
 Reference: https://medium.com/lightbaseio/web-application-firewall-in-go-feat-owasp-modsecurity-core-rule-set-3f97a26e3311
 ```
 01. Locally
 go mod init testwebapi
+go get "github.com/gorilla/mux"
+go mod tidy
 touch main.go
 go run main.go
 curl http://localhost:8081/
