@@ -1,23 +1,55 @@
 package foo
 
-var hashtags []string
+import (
+	"github.com/nikandfor/goid"
+	log "github.com/sirupsen/logrus"
+	"time"
+)
+
+var (
+	trackChan   = make(chan string)
+	untrackChan = make(chan string)
+	DoneFunc    = func() {}
+)
 
 func Track(hs ...string) {
-
 	for _, h := range hs {
-		if !sliceContains(hashtags, h) {
-			hashtags = append(hashtags, h)
-		}
+		log.Printf("[%d] Track '%v'", goid.ID(), h)
+		trackChan <- h
 	}
 }
 
 func Untrack(hs ...string) {
-
 	for _, h := range hs {
-		if sliceContains(hashtags, h) {
-			hashtags = sliceRemove(hashtags, h)
-		}
+		log.Printf("[%d] Untrack '%v'", goid.ID(), h)
+		untrackChan <- h
 	}
+}
+
+var hashtags []string
+
+func init() {
+	go func() {
+		for {
+			select {
+			case h := <-trackChan:
+				log.Printf("[%d] select Track '%v'", goid.ID(), h)
+				if !sliceContains(hashtags, h) {
+					log.Printf("[%d] select hashtags append '%v'", goid.ID(), h)
+					hashtags = append(hashtags, h)
+					log.Printf("[%d] select hashtags delays", goid.ID())
+					time.Sleep(2 * time.Second)
+					DoneFunc()
+				}
+			case h := <-untrackChan:
+				log.Printf("[%d] select Untrack '%v'", goid.ID(), h)
+				if sliceContains(hashtags, h) {
+					hashtags = sliceRemove(hashtags, h)
+					DoneFunc()
+				}
+			}
+		}
+	}()
 }
 
 // https://stackoverflow.com/questions/34070369/removing-a-string-from-a-slice-in-go
@@ -38,12 +70,4 @@ func sliceRemove(s []string, r string) []string {
 		}
 	}
 	return s
-}
-
-func Testing(h string) bool {
-	return sliceContains(hashtags, h)
-}
-
-func SetHashtags(hs []string) {
-	hashtags = hs
 }

@@ -1,4 +1,4 @@
-package  main
+package main
 
 import (
 	"fmt"
@@ -6,21 +6,27 @@ import (
 )
 
 func main() {
-	fmt.Println("hello1")
+	fmt.Println("start")
 
-	//h := "name"
-	//foo.Track(h)
-	//a := foo.Testing(h)
-	//if !a {
-	//	fmt.Println("not found")
-	//}
-
-	name := "name"
-	hashtags := []string{name, "surname"}
-	foo.SetHashtags(hashtags)
-	foo.Untrack(name)
-	a := foo.Testing(name)
-	if !a {
-		fmt.Println("not found")
+	doneChan := make(chan struct{}, 1)
+	foo.DoneFunc = func() {
+		doneChan <- struct{}{}
 	}
+	defer func() {
+		foo.DoneFunc = func() {}
+	}()
+
+	foo.Track("hello")
+	<-doneChan
+
+	foo.Track("world")
+	<-doneChan
+
+	foo.Untrack("world")
+	<-doneChan
+
+	foo.Untrack("hello")
+	<-doneChan
+
+	fmt.Println("finish")
 }
