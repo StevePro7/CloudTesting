@@ -3,7 +3,8 @@ package registry
 type ServiceName string
 
 const (
-	LogService = ServiceName("LogService")
+	LogService     = ServiceName("LogService")
+	GradingService = ServiceName("GradingService")
 )
 
 type patchEntry struct {
