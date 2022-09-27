@@ -47,7 +47,7 @@ func (sh studentsHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (sh studentsHandler) getAll(w http.ResponseWriter, r *http.Request) {
+func (sh studentsHandler) getAll(w http.ResponseWriter, _ *http.Request) {
 	studentsMutex.Lock()
 	defer studentsMutex.Unlock()
 
@@ -61,7 +61,7 @@ func (sh studentsHandler) getAll(w http.ResponseWriter, r *http.Request) {
 	w.Write(data)
 }
 
-func (sh studentsHandler) getOne(w http.ResponseWriter, r *http.Request, id int) {
+func (sh studentsHandler) getOne(w http.ResponseWriter, _ *http.Request, id int) {
 	studentsMutex.Lock()
 	defer studentsMutex.Unlock()
 
@@ -77,7 +77,7 @@ func (sh studentsHandler) getOne(w http.ResponseWriter, r *http.Request, id int)
 	data, err := sh.toJSON(student)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		log.Println(fmt.Errorf("Failed to serialize students: %q", err))
+		log.Println(fmt.Errorf("failed to serialize students: %q", err))
 		return
 	}
 	w.Header().Add("content-type", "application/json")
@@ -89,7 +89,7 @@ func (studentsHandler) toJSON(obj interface{}) ([]byte, error) {
 	enc := json.NewEncoder(&b)
 	err := enc.Encode(obj)
 	if err != nil {
-		return nil, fmt.Errorf("Failed to serialize students: %q", err)
+		return nil, fmt.Errorf("failed to serialize students: %q", err)
 	}
 	return b.Bytes(), nil
 }
