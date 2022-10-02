@@ -19,4 +19,4 @@ https://steveproxna.blogspot.com/2022/09/golang-cheat-sheet.html
 ### Golang Cheat Sheet II
 Tue, 15th November, 2022
 <br />
-//https://steveproxna.blogspot.com/2022/15/golang-cheat-sheet-ii.html
+http://steveproxna.blogspot.com/2022/11/golang-cheat-sheet-ii.html
