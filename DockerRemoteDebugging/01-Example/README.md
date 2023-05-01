@@ -29,3 +29,23 @@ Hello world
 but 8081 Connection refused
 
 Update configuration
+
+
+REPEAT
+docker-compose up
+curl localhost:8080
+Hello World
+
+curl localhost_8081
+curl: (7) Failed to connect to localhost port 8081: Connection refused
+
+Goland | Edit configurations
+Go Remote
+change port to 40000
+set breakpoint in main.go
+e.g.
+now := time.Now()
+
+F5
+curl localhost_8081
+code breaks at break point and can debug step thru code!
