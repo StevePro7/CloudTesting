@@ -14,8 +14,8 @@ curl http://localhost:8081/
 ```
 02. Docker
 Create Dockerfile
-docker build -t 03example:latest
-docker run --rm -it -p 8081:8081/tcp 03example:latest
+docker build -t 04example:latest
+docker run --rm -it -p 8081:8081/tcp 04example:latest
 curl http://localhost:8081/
 
 
