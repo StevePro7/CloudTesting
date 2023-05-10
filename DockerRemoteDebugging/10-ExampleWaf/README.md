@@ -14,6 +14,10 @@ curl http://localhost:8081/
 ```
 02. Docker
 Create Dockerfile
-docker build -t 02example:latest
-docker run --rm -it -p 8081:8081/tcp 02example:latest
+docker build -t 03example:latest
+docker run --rm -it -p 8081:8081/tcp 03example:latest
 curl http://localhost:8081/
+
+
+Bind socket already in use
+sudo fuser -k 8081/tcp

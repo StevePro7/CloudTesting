@@ -7,12 +7,13 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+	"testwebapi/waf"
 )
 
 func AdminHelloHandler(w http.ResponseWriter, _ *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	valu := 4
+	valu := waf.ProcessModSec()
 	data := fmt.Sprintf("Healthy...'%d'!!", valu)
 	err := json.NewEncoder(w).Encode(data)
 	if err != nil {

@@ -15,8 +15,6 @@ func main() {
 	gmux.HandleFunc("/test/artists.php", server.TestHandler).Methods("GET")
 	log.Printf("starting smart reverse proxy on [%s]", bind)
 
-	//waf.InitModSec()
-
 	if err := http.ListenAndServe(bind, server.LimitMiddleware(gmux)); err != nil {
 		log.Fatalf("unable to start web server: %s", err.Error())
 	}
