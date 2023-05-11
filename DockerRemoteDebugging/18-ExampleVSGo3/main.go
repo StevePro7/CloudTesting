@@ -9,7 +9,7 @@ import (
 )
 
 func foo() int {
-	return 9
+	return 10
 }
 
 func main() {
