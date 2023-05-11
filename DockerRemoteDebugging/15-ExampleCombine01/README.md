@@ -78,4 +78,5 @@ curl loaclhost:8081
 no break on F5
 
 08.
-
+CMD [ "/go/bin/dlv", "--listen=:40000", "--headless=true", "--log=true", "--accept-multiclient", "--api-version=2", "exec", "/app/main" ]
+deoesn't work

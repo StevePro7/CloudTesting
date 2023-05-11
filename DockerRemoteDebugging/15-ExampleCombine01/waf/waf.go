@@ -2,6 +2,6 @@ package waf
 
 func ProcessModSec() int {
 
-	inter := 20
+	inter := 22
 	return inter
 }
