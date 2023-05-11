@@ -8,10 +8,10 @@ repeat 02-ExampleVS
 
 right click dockerfile
 Build image
-docker build --pull --rm -f "Dockerfile" -t 16examplevsgo:latest "."
+docker build --pull --rm -f "Dockerfile" -t 17examplevsgo2:latest "."
 right click image
 Run interactive
-docker run --rm -it -p 40000:40000/tcp -p 80:80/tcp 16examplevsgo:latest
+docker run --rm -it -p 40000:40000/tcp -p 80:80/tcp 17examplevsgo2:latest
 
 Click Play extension icon
 Click Play button Docker
@@ -38,5 +38,5 @@ curl localhost:80
 break
 
 
-docker build --pull --rm -f "Dockerfile" -t 16examplevsgo:latest "."
-docker run --rm -it -p 40000:40000/tcp -p 80:80/tcp 16examplevsgo:latest
+docker build --pull --rm -f "Dockerfile" -t 17examplevsgo2:latest "."
+docker run --rm -it -p 40000:40000/tcp -p 80:80/tcp 17examplevsgo2:latest
