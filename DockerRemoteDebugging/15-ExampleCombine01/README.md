@@ -21,3 +21,28 @@ curl http://localhost:8081/
 
 Bind socket already in use
 sudo fuser -k 8081/tcp
+
+
+NEW
+Repeat 10-Example
+but update Dockerfile
+
+01.
+FROM golang:latest
+
+02.
+#COPY . .
+COPY . /app
+
+03.
+EXPOSE 8081 40000
+Edit configurations
++
+Go Remote
+change port to 40000
+set breakpoint
+F5
+curl localhost:8081
+does not break
+curl localhost:40000
+connection refused
