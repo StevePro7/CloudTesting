@@ -41,3 +41,8 @@ break
 
 docker build --pull --rm -f "Dockerfile" -t 18examplevsgo3:latest "."
 docker run --rm -it -p 40000:40000/tcp -p 80:80/tcp 18examplevsgo3:latest
+
+IMPORTANT
+it seems that this line in the Dockerfile prevents packages like 'foo'
+from being detected and built as part of binary..??
+#ENV GO111MODULE=off
