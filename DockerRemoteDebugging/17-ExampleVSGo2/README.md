@@ -3,38 +3,39 @@ VS Code example
 
 repeat 02-ExampleVS
 
-01.
-`Launch VS Code`
-
-right click dockerfile
-Build image
 docker build --pull --rm -f "Dockerfile" -t 17examplevsgo2:latest "."
-right click image
-Run interactive
-docker run --rm -it -p 40000:40000/tcp -p 80:80/tcp 17examplevsgo2:latest
+docker run --rm -it -p 40000:40000/tcp -p 8081:8081/tcp 17examplevsgo2:latest
 
-Click Play extension icon
-Click Play button Docker
+IMPORTANT
+curl localhost:8081
+curl: (7) Failed to connect to localhost port 8081: Connection refused
+
+01.
+Launch Goland IDE
+Edit configurations
++
+Go Remote
+Port 40000
+OK
+click Unnamed Debug icon
 
 set breakpoint
-curl localhost:80
+curl localhost:8081
 break
 
 
-02.
-Launch Goland IDE
-change value
-Build image
-right click image
-Run interactive
+Launch VS Code
+Click Play extension icon
+Click Play button Docker
 
-Edit configurations
-Go Remote
-Port 4000
-Click debug button
+
+02.
+Launch VS Code
+docker build --pull --rm -f "Dockerfile" -t 17examplevsgo2:latest "."
+docker run --rm -it -p 40000:40000/tcp -p 8081:8081/tcp 17examplevsgo2:latest
 
 set breakpoint
-curl localhost:80
+curl localhost:8081
 break
 
 
