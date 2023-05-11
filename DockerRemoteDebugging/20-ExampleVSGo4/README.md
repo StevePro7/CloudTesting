@@ -3,8 +3,8 @@ VS Code example
 
 repeat 02-ExampleVS
 
-docker build --pull --rm -f "Dockerfile" -t 18examplevsgo3:latest "."
-docker run --rm -it -p 40000:40000/tcp -p 8081:8081/tcp 18examplevsgo3:latest
+docker build --pull --rm -f "Dockerfile" -t 20examplevsgo4:latest "."
+docker run --rm -it -p 40000:40000/tcp -p 8081:8081/tcp 20examplevsgo4:latest
 
 IMPORTANT
 curl localhost:8081
@@ -31,16 +31,16 @@ Click Play button Docker
 
 02.
 Launch VS Code
-docker build --pull --rm -f "Dockerfile" -t 18examplevsgo3:latest "."
-docker run --rm -it -p 40000:40000/tcp -p 8081:8081/tcp 18examplevsgo3:latest
+docker build --pull --rm -f "Dockerfile" -t 20examplevsgo4:latest "."
+docker run --rm -it -p 40000:40000/tcp -p 8081:8081/tcp 20examplevsgo4:latest
 
 set breakpoint
 curl localhost:8081
 break
 
 
-docker build --pull --rm -f "Dockerfile" -t 18examplevsgo3:latest "."
-docker run --rm -it -p 40000:40000/tcp -p 80:80/tcp 18examplevsgo3:latest
+docker build --pull --rm -f "Dockerfile" -t 20examplevsgo4:latest "."
+docker run --rm -it -p 40000:40000/tcp -p 80:80/tcp 20examplevsgo4:latest
 
 IMPORTANT
 it seems that this line in the Dockerfile prevents packages like 'foo'

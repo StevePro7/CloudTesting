@@ -1,5 +1,5 @@
 package foo
 
 func Foo() int {
-	return 12
+	return 13
 }
