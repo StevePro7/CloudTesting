@@ -1,5 +1,9 @@
 package foo
 
-func Foo() int {
-	return 13
+// #include "foo.h"
+import "C"
+
+func Bar() int {
+	bar := int(C.Cbar())
+	return bar
 }
