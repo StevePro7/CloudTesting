@@ -1,0 +1,66 @@
+20-May-2023
+TODO
+need to know from source Dockerfile what is required to install libbpf
+
+stevepro@Tigera:~/GitHub/StevePro7/CloudTesting/DockerRemoteDebugging/25-ExampleLibbpf/bpf-gpl/include/libbpf/src$ d ps
+CONTAINER ID   IMAGE                  COMMAND                  CREATED       STATUS       PORTS                       NAMES
+a0b346f79add   kindest/node:v1.26.3   "/usr/local/bin/entr…"   2 hours ago   Up 2 hours                               stevepro-bz-7m3o-worker2
+8ad55ed60b58   kindest/node:v1.26.3   "/usr/local/bin/entr…"   2 hours ago   Up 2 hours   127.0.0.1:35847->6443/tcp   stevepro-bz-7m3o-control-plane
+69b180c5e0ac   kindest/node:v1.26.3   "/usr/local/bin/entr…"   2 hours ago   Up 2 hours                               stevepro-bz-7m3o-worker3
+56676301b72d   kindest/node:v1.26.3   "/usr/local/bin/entr…"   2 hours ago   Up 2 hours                               stevepro-bz-7m3o-worker
+stevepro@Tigera:~/GitHub/StevePro7/CloudTesting/DockerRemoteDebugging/25-ExampleLibbpf/bpf-gpl/include/libbpf/src$ docker build --pull --rm -f "Dockerfile" -t 25examplelibbpf:latest "."
+[+] Building 0.0s (2/2) FINISHED                                                                                                                                                                                               
+ => [internal] load .dockerignore                                                                                                                                                                                         0.0s
+ => => transferring context: 2B                                                                                                                                                                                           0.0s
+ => [internal] load build definition from Dockerfile                                                                                                                                                                      0.0s
+ => => transferring dockerfile: 2B                                                                                                                                                                                        0.0s
+error: failed to solve: failed to read dockerfile: open /var/lib/docker/tmp/buildkit-mount1944026197/Dockerfile: no such file or directory
+stevepro@Tigera:~/GitHub/StevePro7/CloudTesting/DockerRemoteDebugging/25-ExampleLibbpf/bpf-gpl/include/libbpf/src$ cd ..
+stevepro@Tigera:~/GitHub/StevePro7/CloudTesting/DockerRemoteDebugging/25-ExampleLibbpf/bpf-gpl/include/libbpf$ cd ..
+stevepro@Tigera:~/GitHub/StevePro7/CloudTesting/DockerRemoteDebugging/25-ExampleLibbpf/bpf-gpl/include$ cd ..
+stevepro@Tigera:~/GitHub/StevePro7/CloudTesting/DockerRemoteDebugging/25-ExampleLibbpf/bpf-gpl$ cd ..
+stevepro@Tigera:~/GitHub/StevePro7/CloudTesting/DockerRemoteDebugging/25-ExampleLibbpf$ ls -l
+total 56
+drwxrwxr-x 3 stevepro stevepro 4096 May 20 18:02 bpf
+drwxrwxr-x 3 stevepro stevepro 4096 May 20 18:04 bpf-gpl
+-rw-rw-r-- 1 stevepro stevepro  559 May 20 16:52 Dockerfile
+-rw-rw-r-- 1 stevepro stevepro   27 May 20 18:00 go.mod
+-rw-rw-r-- 1 stevepro stevepro  562 May 20 18:08 main.go
+-rw-rw-r-- 1 stevepro stevepro 1264 May 20 18:17 README.md
+stevepro@Tigera:~/GitHub/StevePro7/CloudTesting/DockerRemoteDebugging/25-ExampleLibbpf$ docker build --pull --rm -f "Dockerfile" -t 25examplelibbpf:latest "."
+[+] Building 61.5s (10/10) FINISHED                                                                                                                                                                                            
+ => [internal] load .dockerignore                                                                                                                                                                                         0.0s
+ => => transferring context: 2B                                                                                                                                                                                           0.0s
+ => [internal] load build definition from Dockerfile                                                                                                                                                                      0.0s
+ => => transferring dockerfile: 598B                                                                                                                                                                                      0.0s
+ => [internal] load metadata for docker.io/library/golang:latest                                                                                                                                                          6.1s
+ => [auth] library/golang:pull token for registry-1.docker.io                                                                                                                                                             0.0s
+ => [internal] load build context                                                                                                                                                                                         0.2s
+ => => transferring context: 29.62MB                                                                                                                                                                                      0.2s
+ => CACHED [1/5] FROM docker.io/library/golang:latest@sha256:685a22e459f9516f27d975c5cc6accc11223ee81fdfbbae60e39cc3b87357306                                                                                             0.0s
+ => => resolve docker.io/library/golang:latest@sha256:685a22e459f9516f27d975c5cc6accc11223ee81fdfbbae60e39cc3b87357306                                                                                                    0.0s
+ => [2/5] COPY . /app                                                                                                                                                                                                     0.1s
+ => [3/5] WORKDIR /app                                                                                                                                                                                                    0.0s
+ => [4/5] RUN CGO_ENABLED=1 go install -ldflags "-s -w -extldflags '-static'" github.com/go-delve/delve/cmd/dlv@latest                                                                                                   48.3s
+ => ERROR [5/5] RUN CGO_ENABLED=1 go build -gcflags "all=-N -l" -o main .                                                                                                                                                 6.7s
+------
+ > [5/5] RUN CGO_ENABLED=1 go build -gcflags "all=-N -l" -o main .:
+#10 2.934 # testwebapi/bpf/libbpf
+#10 2.934 In file included from bpf/libbpf/libbpf.go:5:
+#10 2.934 ./libbpf_api.h:1:10: fatal error: bpf/libbpf.h: No such file or directory
+#10 2.934     1 | #include <bpf/libbpf.h>
+#10 2.934       |          ^~~~~~~~~~~~~~
+#10 2.934 compilation terminated.
+------
+Dockerfile:15
+--------------------
+  13 |     RUN CGO_ENABLED=1 go install -ldflags "-s -w -extldflags '-static'" github.com/go-delve/delve/cmd/dlv@latest
+  14 |     #ENV GO111MODULE=off
+  15 | >>> RUN CGO_ENABLED=1 go build -gcflags "all=-N -l" -o main .
+  16 |     EXPOSE 80 40000
+  17 |     CMD [ "/go/bin/dlv", "--listen=:40000", "--headless=true", "--log=true", "--accept-multiclient", "--api-version=2", "exec", "/app/main" ]
+--------------------
+error: failed to solve: process "/bin/sh -c CGO_ENABLED=1 go build -gcflags \"all=-N -l\" -o main ." did not complete successfully: exit code: 1
+stevepro@Tigera:~/GitHub/StevePro7/CloudTesting/DockerRemoteDebugging/25-ExampleLibbpf$ docker build --pull --rm -f "Dockerfile" -t 25examplelibbpf:latest "."
+
+

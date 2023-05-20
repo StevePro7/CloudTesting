@@ -9,6 +9,7 @@ import (
 	"time"
 )
 
+// https://www.digitalocean.com/community/tutorials/debugging-go-code-with-visual-studio-code
 func main() {
 	addr := ":8081"
 	log.Printf("Starting server on %s\n", addr)
