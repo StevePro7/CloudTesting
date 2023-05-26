@@ -1,5 +1,5 @@
 VS Code example
-24-0May-2023
+26-0May-2023
 
 repeat 02-ExampleVS
 

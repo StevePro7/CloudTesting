@@ -9,6 +9,5 @@ import "C"
 
 func Bar() int {
 	bar := int(C.Cbar())
-	//bar := 28
 	return bar
 }

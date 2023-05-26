@@ -1,8 +1,6 @@
-#include "libbpf.h"
+#ifndef _LIBBPF_API_H
+#define _LIBBPF_API_H
 
-int Cbar()
-{
-    int ncpus = libbpf_num_possible_cpus();
-    return ncpus;
-    //return 21;
-}
+int Cbar();
+
+#endif//_LIBBPF_API_H

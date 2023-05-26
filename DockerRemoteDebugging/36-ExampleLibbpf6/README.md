@@ -1,10 +1,10 @@
 VS Code example
-24-0May-2023
+26-0May-2023
 
 repeat 02-ExampleVS
 
-docker build --pull --rm -f "Dockerfile" -t 35examplelibbpf:latest "."
-docker run --rm -it -p 40000:40000/tcp -p 8081:8081/tcp 35examplelibbpf:latest
+docker build --pull --rm -f "Dockerfile" -t 36examplelibbpf:latest "."
+docker run --rm -it -p 40000:40000/tcp -p 8081:8081/tcp 36examplelibbpf:latest
 
 
 => ERROR [5/5] RUN CGO_ENABLED=1 go build -gcflags "all=-N -l" -o main .                                       4.8s
@@ -66,16 +66,16 @@ Click Play button Docker
 
 02.
 Launch VS Code
-docker build --pull --rm -f "Dockerfile" -t 35examplelibbpf:latest "."
-docker run --rm -it -p 40000:40000/tcp -p 8081:8081/tcp 35examplelibbpf:latest
+docker build --pull --rm -f "Dockerfile" -t 36examplelibbpf:latest "."
+docker run --rm -it -p 40000:40000/tcp -p 8081:8081/tcp 36examplelibbpf:latest
 
 set breakpoint
 curl localhost:8081
 break
 
 
-docker build --pull --rm -f "Dockerfile" -t 35examplelibbpf:latest "."
-docker run --rm -it -p 40000:40000/tcp -p 80:80/tcp 35examplelibbpf:latest
+docker build --pull --rm -f "Dockerfile" -t 36examplelibbpf:latest "."
+docker run --rm -it -p 40000:40000/tcp -p 80:80/tcp 36examplelibbpf:latest
 
 IMPORTANT
 it seems that this line in the Dockerfile prevents packages like 'foo'
