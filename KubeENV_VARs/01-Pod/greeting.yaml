@@ -7,13 +7,6 @@ spec:
   containers:
   - name: env-print-demo
     image: bash
-    resources:
-      limits:
-        cpu: 200m
-        memory: 500Mi
-      requests:
-        cpu: 100m
-        memory: 200Mi
     env:
     - name: GREETING
       value: "Warm greetings to"
