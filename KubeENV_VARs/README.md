@@ -9,3 +9,6 @@ https://kubernetes.io/docs/tasks/inject-data-application/define-environment-vari
 02-Deploy
 how to pass environment variable in kubectl deployment?
 https://stackoverflow.com/questions/56003777/how-to-pass-environment-variable-in-kubectl-deployment
+
+Python test code
+/home/stevepro/GitHub/StevePro9/PythonSetup/TheNewTests/02-ENV-Vars
