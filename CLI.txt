@@ -1,0 +1,73 @@
+CLI
+07-Jan-2022
+
+Ubuntu Linux
+Terminal
+
+
+01.
+az version
+{
+  "azure-cli": "2.55.0",
+  "azure-cli-core": "2.55.0",
+  "azure-cli-telemetry": "1.1.0",
+  "extensions": {}
+}
+
+
+az --version
+azure-cli                         2.55.0
+
+core                              2.55.0
+telemetry                          1.1.0
+
+Dependencies:
+msal                            1.24.0b2
+azure-mgmt-resource             23.1.0b2
+
+Python location '/opt/az/bin/python3'
+Extensions directory '/home/stevepro/.azure/cliextensions'
+
+Python (Linux) 3.11.5 (main, Nov 29 2023, 03:42:00) [GCC 9.4.0]
+
+
+
+02.
+aws --version
+aws-cli/2.2.28 Python/3.8.8 Linux/6.0.19-060019-generic exe/x86_64.ubuntu.20 prompt/off
+
+
+
+03.
+gcloud --version
+Google Cloud SDK 350.0.0
+bq 2.0.70
+core 2021.07.23
+gsutil 4.65
+Updates are available for some Cloud SDK components.  To install them,
+please run:
+  $ gcloud components update
+  
+  
+gcloud components update
+To revert your SDK to the previously installed version, you may run:
+  $ gcloud components update --version 350.0.0
+
+WARNING:   There are other instances of Google Cloud Platform tools on your system PATH.
+  Please remove the following to avoid confusion or accidental invocation:
+
+  /usr/lib/google-cloud-sdk/bin/gcloud
+/usr/lib/google-cloud-sdk/bin/git-credential-gcloud.sh
+/usr/lib/google-cloud-sdk/bin/bq
+/usr/lib/google-cloud-sdk/bin/anthoscli
+/usr/lib/google-cloud-sdk/bin/gsutil
+/usr/lib/google-cloud-sdk/bin/docker-credential-gcloud
+
+
+pip --version
+pip3 --version
+pip 23.3.1 from /home/stevepro/.local/lib/python3.8/site-packages/pip (python 3.8)
+
+python --version
+python3 --version
+Python 3.8.10
