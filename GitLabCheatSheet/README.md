@@ -10,3 +10,17 @@ https://cloudifydevops.com/secured-gitlab-pipeline-with-base64
 	
 	
 https://gitlab.com/StevePro7/hello-world-python/-/blob/main/.gitlab-ci.yml	
+
+
+VARs
+
+
+update readme section
+
+https://github.com/SteveProXNA/CloudTesting/tree/main/KubernetesCheatSheet/01-Example
+minikube
+docker sytem prune
+minikube start driver=docker
+
+https://github.com/SteveProXNA/CloudTesting/tree/main/KubernetesCheatSheet/02-Example
+code sample
