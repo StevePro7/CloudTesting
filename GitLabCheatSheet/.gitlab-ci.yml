@@ -1,0 +1,83 @@
+# .gitlab-ci.yml
+stages:
+  - build
+  - deploy
+
+build-and-push:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - echo "hello"
+    - docker login -u "steveproxna" -p "$CI_REGISTRY_PASSWORD" docker.io
+    - echo "-bye!!-"
+  script:
+    - echo "build-and-push begin2"
+    - echo "oneX:'${CI_COMMIT_SHA}'"
+    - docker build --pull --rm -f "Dockerfile" -t flask-api:latest "."
+    - docker tag flask-api:latest steveproxna/flask-api:${CI_COMMIT_SHA}
+    - echo "build-and-push -mid2-"
+    - docker push docker.io/steveproxna/flask-api:${CI_COMMIT_SHA}
+    - echo "build-and-push -end2-"
+  only:
+    - steven-test-branch
+
+variables:
+  HELM_CHART_PATH: helm
+  HELM_RELEASE_NAME: adriananame
+  DEPLOYMENT_NAMESPACE: test-ns
+  HELM_ADDTIONAL_ARGS: |
+    --set image.tag=${CI_COMMIT_SHA}
+    --values ${HELM_CHART_PATH}/${ENVIRONMENT_VALUES_FILE}
+
+.dev:
+  variables:
+    DEPLOYMENT_ENVIRONMENT_NAME: dev
+    ENVIRONMENT_VALUES_FILE: values-dev.yaml
+  before_script:
+    - echo ".dev begin"
+    - HELM_ADDTIONAL_ARGS="$HELM_ADDTIONAL_ARGS"
+    - echo ".dev -end-"
+
+.install-helm-chart:
+  stage: deploy
+  image: dtzar/helm-kubectl
+  services:
+    - docker:dind
+  variables:
+    DEPLOYMENT_DESCRIPTION: "${CI_COMMIT_SHORT_SHA}: ${CI_COMMIT_TITLE}"
+  before_script:
+    - echo "deploy-77"
+    - kubectl config use-context stevepro-aks-cluster
+    - echo "deploy-88"
+  script:
+    - echo ".install-helm-chart begin3"
+    - echo "ENVIRONMENT_VALUES_FILE='${ENVIRONMENT_VALUES_FILE}'"
+    - echo "HELM_ADDTIONAL_ARGS='${HELM_ADDTIONAL_ARGS}'"
+    - helm list --kubeconfig ${KUBECONFIG} -n ${DEPLOYMENT_NAMESPACE}
+    - helm dependency update ${HELM_CHART_PATH}
+    - >
+      helm upgrade
+      --install
+      ${HELM_RELEASE_NAME}
+      ${HELM_CHART_PATH}
+      --kubeconfig ${KUBECONFIG}
+      --namespace ${DEPLOYMENT_NAMESPACE}
+      --description "${DEPLOYMENT_DESCRIPTION}"
+      ${HELM_ADDTIONAL_ARGS}
+    - echo ".install-helm-chart -end3-"
+  only:
+    - steven-test-branch
+
+.deploy-rules-dev:
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+
+deploy-dev:
+  extends:
+    - .dev
+    - .install-helm-chart
+  #    - .deploy-rules-dev
+  needs:
+    - build-and-push

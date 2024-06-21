@@ -1,0 +1,5 @@
+Successfully deployed!
+
+You can access the app via port forwarding
+
+k port-forward svc/{{ .Release.Name }} 8080:80

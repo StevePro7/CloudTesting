@@ -1,0 +1,9 @@
+image:
+  repository: docker.io/steveproxna/flask-api
+  tag: undefined # override at deploy time
+app:
+  port: 80
+  targetPort: 8080
+env:
+  APP_LOGGER: INFO
+  FOO: bar
