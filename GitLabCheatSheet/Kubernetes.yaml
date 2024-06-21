@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: flask-api
-          image: steveproxna/flask-api:2.0
+          image: steveproxna/flask-api:1.0
           imagePullPolicy: IfNotPresent
           resources:
             limits:

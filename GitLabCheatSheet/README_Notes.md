@@ -10,23 +10,22 @@ curl http://localhost:8080
 ```
 ```
 02. Docker
-Ctrl + Shift + P | Add Docker Files to Workspace
-Go | 8081 | No
-Right click Dockerfile | Build image... | 02example:latest
-Right click 02example:latest | Run interactive
-curl http://localhost:8081/test
+docker build --pull --rm -f "Dockerfile" -t flask-api:1.0 "."
+docker run --rm -d -p 8080:8080/tcp flask-api:1.0 --name "flask-api"
+curl http://localhost:8080
+docker stop <conteinar_id>
 ```
 ```
 03. Kubernetes [local]
-kind create cluster
-docker build -t stevepro/testwebapi:2.0 .
-kind load docker-image stevepro/testwebapi:2.0
+kind create cluster --name flask-cluster
+kubectl create ns test-ns
+kubectl config set-context --current --namespace=test-ns
+kind load docker-image flask-api:1.0 --name flask-cluster
 kubectl apply -f Kubernetes.yaml
-kubectl get nodes -o wide
-kubectl get services
-curl http://172.18.0.2:31196/test
+kubectl port-forward service/flask-api-service 8080:80
+curl http://localhost:8080
 kubectl delete -f Kubernetes.yaml
-kind delete cluster
+kind delete cluster --name flask-cluster
 ```
 ```
 03. Kubernetes [remote]
