@@ -1,16 +1,38 @@
-# This is a sample Python script.
+import http
+from flask import Flask, request, jsonify
+import os
 
-# Press Ctrl+F5 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+app = Flask(__name__)
 
+#root: str = '/home/stevepro/data'
+root: str = '/data'
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press F9 to toggle the breakpoint.
+@app.route('/')
+def home():
+    return "Welcome to the Flask app with persistent volume!"
 
+@app.route('/write', methods=['POST'])
+def write_file():
+    data = request.json
+    filename = data.get('filename', 'default.txt')
+    content = data.get('content', '')
 
-# Press the green button in the gutter to run the script.
+    with open(f'{root}/{filename}', 'w') as f:
+        f.write(content)
+
+    return jsonify({"message": "File written successfully!"}), http.HTTPStatus.CREATED
+
+@app.route('/read', methods=['GET'])
+def read_file():
+    filename = request.args.get('filename', 'default.txt')
+
+    if not os.path.exists(f'{root}/{filename}'):
+        return jsonify({"error": "File not found!"}), http.HTTPStatus.NOT_FOUND
+
+    with open(f'{root}/{filename}', 'r') as f:
+        content = f.read()
+
+    return jsonify({"content": content}), http.HTTPStatus.OK
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    app.run(host='0.0.0.0', port=5000)

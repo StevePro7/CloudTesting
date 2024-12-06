@@ -8,10 +8,10 @@ pip freeze > requirements.txt
 
 F5
 
-curl http://0.0.0.0/
-curl http://0.0.0.0/read
+curl http://0.0.0.0:5000/
+curl http://0.0.0.0:5000/read
 
-curl --location --request POST 'curl http://0.0.0.0/write' \
+curl --location --request POST 'http://0.0.0.0:5000/write' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "content": "This is the initial test"
@@ -48,12 +48,11 @@ no files
 curl http://0.0.0.0/
 curl http://0.0.0.0/read
 
-curl --location --request POST 'curl http://0.0.0.0/write' \
+curl --location --request POST 'http://0.0.0.0/write' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "content": "This is the initial test"
 }'
-
 
 Shell into pod
 cd /data
@@ -66,3 +65,6 @@ kubectl delete po <pod_id>
 Shell into pod
 cd /data
 cat default.txt
+
+
+kind delete cluster
