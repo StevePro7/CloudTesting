@@ -23,6 +23,9 @@ pyctest:latest
 docker build --pull --rm -f "Dockerfile" -t pvctest:latest "." 
 
 
+KIND
+kind load docker-image pvctest:latest
+
 persistent-volume.yaml
 persistent-volume-claim.yaml
 
@@ -37,7 +40,7 @@ kubectl apply -f service.yaml
 
 
 kubectl port-forward service/flask-service 5000:80
-curl http://0.0.0.0/
+curl http://0.0.0.0:5000/
 
 
 Shell into pod
@@ -45,14 +48,18 @@ cd /data
 no files
 
 
-curl http://0.0.0.0/
-curl http://0.0.0.0/read
+curl http://0.0.0.0:5000/
+curl http://0.0.0.0:5000/read
 
-curl --location --request POST 'http://0.0.0.0/write' \
+curl --location --request POST 'http://0.0.0.0:5000/write' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "content": "This is the initial test"
+    "content": "new test inside pod"
 }'
+
+
+sudo fuser -k 5000/tcp
+
 
 Shell into pod
 cd /data
