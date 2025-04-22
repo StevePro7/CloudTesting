@@ -6,6 +6,7 @@ Instructions for Cloud Setup Cheat Sheet blog post
 <br /><br />
 Pre-Requisites
 ```
+TODO
 ```
 
 Kubernetes [remote]
@@ -50,6 +51,5 @@ kubectl delete -f Kubernetes.yaml
 eksctl delete cluster		\
     --name=stevepro-aws-eks	\
     --region eu-west-1		\
-    --force			\
-    --parallel 10
+    --force			    
 ```
