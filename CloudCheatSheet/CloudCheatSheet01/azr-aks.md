@@ -37,6 +37,6 @@ az aks create --name stevepro-azraks            \
 
 # 03	delete cluster
 ```
-az aks delete --name stevepro-azraks			\
+az aks delete --name stevepro-azraks            \
     --resource-group stevepro-azraks
 ```
