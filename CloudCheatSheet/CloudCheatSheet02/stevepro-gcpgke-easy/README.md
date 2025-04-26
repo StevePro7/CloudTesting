@@ -38,7 +38,16 @@ gcloud container clusters get-credentials stevepro-gcp-gke  \
     --quiet --verbosity debug
 ```
 
-COMMAND #03 Destroy
+COMMAND #03 DeployTest
+```
+kubectl create ns test-ns
+kubectl config set-context --current --namespace=test-ns
+kubectl apply -f Kubernetes.yaml
+kubectl port-forward service/flask-api-service 8080:80
+curl http://localhost:8080
+```
+
+COMMAND #04 Destroy
 ```
 gcloud container clusters delete stevepro-gcp-gke           \
     --zone europe-west1-b                                   \
