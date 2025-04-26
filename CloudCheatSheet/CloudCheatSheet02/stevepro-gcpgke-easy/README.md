@@ -47,9 +47,20 @@ kubectl port-forward service/flask-api-service 8080:80
 curl http://localhost:8080
 ```
 
+COMMAND #04 Shell into Node
+```
+mkdir -p ~/GitHub/luksa
+cd ~/GitHub/luksa
+git clone https://github.com/luksa/kubectl-plugins.git
+cd kubectl-plugins
+chmod +x kubectl-ssh
+kubectl get nodes
+./kubectl-ssh node gke-stevepro-gcp-gke-default-pool-0b4ca8ca-sjpj
+```
+
 COMMAND #04 Destroy
 ```
 gcloud container clusters delete stevepro-gcp-gke           \
     --zone europe-west1-b                                   \
-    --async --quiet --verbosity debug
+    --quiet --verbosity debug
 ```
