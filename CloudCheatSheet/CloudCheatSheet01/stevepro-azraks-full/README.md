@@ -9,15 +9,22 @@ Pre-Requisites
 TODO
 ```
 
+Master SSH Key
+```
+cd ~/.ssh
+ssh-keygen -t rsa -b 4096 -N '' -f master_ssh_key
+eval $(ssh-agent -s)
+ssh-add master_ssh_key
+```
 Kubernetes [remote]
 ```
-#az group create --name ${CLUSTER_NAME} --location ${AZ_LOCATION} --debug
+az login
+az group create --name stevepro-azraks-rg --location northeurope --debug
 ```
 
 # 00	security principal
 ```
-az login
-az ad sp create-for-rbac --name ${USER}-sp --skip-assignment
+az ad sp create-for-rbac --name stevepro-sp --skip-assignment
 ```
 
 # 02	create cluster
