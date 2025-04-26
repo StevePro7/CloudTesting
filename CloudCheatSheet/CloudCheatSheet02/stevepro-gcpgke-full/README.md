@@ -24,29 +24,29 @@ gcloud container clusters list
 Kubernetes [remote]
 COMMAND #01 Create
 ```
-gcloud container clusters create stevepro-gcp-gke
-    --project=steveproproject
-    --zone=europe-west1-b  
-    --machine-type=e2-standard-2  
-    --disk-type pd-standard 
-    --cluster-version=1.30.9-gke.1127000 
-    --num-nodes=3 
-    --network=default 
-    --create-subnetwork=name=stevepro-gcp-gke-subnet,range=/28 
-    --enable-ip-alias 
-    --enable-intra-node-visibility 
-    --logging=NONE 
-    --monitoring=NONE 
-    --enable-network-policy 
-    --labels=prefix=stevepro-gcp-gke,created-by=${USER}
-    --quiet --verbosity debug 
+gcloud container clusters create stevepro-gcp-gke               \
+    --project=steveproproject                                   \
+    --zone=europe-west1-b                                       \
+    --machine-type=e2-standard-2                                \
+    --disk-type pd-standard                                     \
+    --cluster-version=1.30.9-gke.1127000                        \
+    --num-nodes=3                                               \
+    --network=default                                           \
+    --create-subnetwork=name=stevepro-gcp-gke-subnet,range=/28  \
+    --enable-ip-alias                                           \
+    --enable-intra-node-visibility                              \
+    --logging=NONE                                              \
+    --monitoring=NONE                                           \
+    --enable-network-policy                                     \
+    --labels=prefix=stevepro-gcp-gke,created-by=${USER}         \
+    --quiet --verbosity debug                                   \
     --no-enable-managed-prometheus
 ```
 
 COMMAND #02 Credentials
 ```
-gcloud container clusters get-credentials stevepro-gcp-gke  \
-    --zone=europe-west1-b                                   \
+gcloud container clusters get-credentials stevepro-gcp-gke      \
+    --zone=europe-west1-b                                       \
     --quiet --verbosity debug
 ```
 
@@ -72,7 +72,7 @@ kubectl get nodes
 
 COMMAND #05 Destroy
 ```
-gcloud container clusters delete stevepro-gcp-gke           \
-    --zone europe-west1-b                                   \
+gcloud container clusters delete stevepro-gcp-gke               \
+    --zone europe-west1-b                                       \
     --quiet --verbosity debug
 ```
