@@ -28,7 +28,8 @@ gcloud container clusters create stevepro-gcp-gke           \
     --zone europe-west1-b                                   \
     --num-nodes 1                                           \
     --machine-type e2-medium                                \
-    --image-type COS_CONTAINERD
+    --image-type COS_CONTAINERD                             \
+    --quiet --verbosity debug
 ```
 
 COMMAND #02 Credentials

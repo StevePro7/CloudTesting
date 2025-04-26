@@ -39,8 +39,8 @@ gcloud container clusters create stevepro-gcp-gke               \
     --monitoring=NONE                                           \
     --enable-network-policy                                     \
     --labels=prefix=stevepro-gcp-gke,created-by=${USER}         \
-    --quiet --verbosity debug                                   \
-    --no-enable-managed-prometheus
+    --no-enable-managed-prometheus                              \
+    --quiet --verbosity debug
 ```
 
 COMMAND #02 Credentials
