@@ -70,7 +70,13 @@ kubectl get nodes
 ./kubectl-ssh node gke-stevepro-gcp-gke-default-pool-0b4ca8ca-sjpj
 ```
 
-COMMAND #05 Destroy
+COMMAND #05 Cleanup
+```
+kubectl delete -f Kubernetes.yaml
+kubectl delete ns test-ns
+```
+
+COMMAND #06 Destroy
 ```
 gcloud container clusters delete stevepro-gcp-gke               \
     --zone europe-west1-b                                       \
