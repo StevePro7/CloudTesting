@@ -1,15 +1,9 @@
-# Cloud Setup Cheat Sheet
+# Cloud Setup Cheat Sheet GCP-GKE
 dd-mmm-2025
 <br />
 Instructions for Cloud Setup Cheat Sheet blog post
 <br />URL
 <br /><br />
-Pre-Requisites
-```
-TODO
-```
-
-Kubernetes [remote]
 Pre-Requisites
 ```
 gcloud auth login
@@ -19,8 +13,6 @@ gcloud config set project SteveProProject
 ```
 Check resources
 ```
-gcloud compute regions list
-gcloud compute zones list
 gcloud compute instances list
 gcloud compute disks list
 gcloud compute forwarding-rules list
@@ -28,6 +20,8 @@ gcloud compute firewall-rules list
 gcloud compute addresses list
 gcloud container clusters list
 ```
+
+Kubernetes [remote]
 COMMAND #01 Create
 ```
 gcloud container clusters create stevepro-gcp-gke           \
