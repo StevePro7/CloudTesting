@@ -4,10 +4,6 @@ dd-mmm-2025
 Instructions for Cloud Setup Cheat Sheet blog post
 <br />URL
 <br /><br />
-Pre-Requisites
-```
-TODO
-```
 
 Master SSH Key
 ```
@@ -16,13 +12,31 @@ ssh-keygen -t rsa -b 4096 -N '' -f master_ssh_key
 eval $(ssh-agent -s)
 ssh-add master_ssh_key
 ```
-Kubernetes [remote]
+
+Pre-Requisites
 ```
 az login
+```
+
+Check resources
+```
+az account list --output table
+az group list --output table
+az resource list --output table
+az resource list --query "[?location=='northeurope']" --output table
+az vm list --output table
+az aks list --output table
+az container list --output table
+az storage account list --output table
+az network public-ip list --output table
+```
+
+# 00	create resource group
+```
 az group create --name stevepro-azraks-rg --location northeurope --debug
 ```
 
-# 00	security principal
+# 00	create security principal
 ```
 az ad sp create-for-rbac --name ${USER}-sp --skip-assignment
 ```
@@ -43,6 +57,7 @@ export AZ_SP_ID=<value_from_appId>
 export AZ_SP_PASSWORD=<value_from_password>
 ```
 
+# Kubernetes [remote]
 # 02	create cluster
 ```
 az aks create --name stevepro-azraks            \
@@ -82,7 +97,7 @@ git clone https://github.com/luksa/kubectl-plugins.git
 cd kubectl-plugins
 chmod +x kubectl-ssh
 kubectl get nodes
-./kubectl-ssh node gke-stevepro-gcp-gke-default-pool-0b4ca8ca-sjpj
+./kubectl-ssh node TODO-get-AKS-node
 ```
 
 COMMAND #05 Cleanup
