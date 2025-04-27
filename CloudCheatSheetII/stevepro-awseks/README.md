@@ -48,11 +48,11 @@ aws s3 ls
 aws sns list-topics --query 'Topics[*].TopicArn' --output table
 aws sqs list-queues --query 'QueueUrls' --output table
 aws ssm describe-parameters --query 'Parameters[*].Name' --output table
-
 ```
 
 Kubernetes [remote]
 # 00	cluster YAML
+```
 kind: ClusterConfig
 apiVersion: eksctl.io/v1alpha5
 
