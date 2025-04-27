@@ -20,3 +20,13 @@ https://steveproxna.blogspot.com/2022/09/golang-cheat-sheet.html
 Tue, 15th November, 2022
 <br />
 http://steveproxna.blogspot.com/2022/11/golang-cheat-sheet-ii.html
+
+### Cloud Cheat Sheet
+//Thu, 15th September, 2022
+<br />
+//https://steveproxna.blogspot.com/2022/09/golang-cheat-sheet.html
+
+### Cloud Cheat Sheet II
+//Tue, 15th November, 2022
+<br />
+//http://steveproxna.blogspot.com/2022/11/golang-cheat-sheet-ii.html
