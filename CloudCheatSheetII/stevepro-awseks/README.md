@@ -143,11 +143,11 @@ COMMAND #04 Shell into Node - TODO
 Ref: 
 ~\GitHub\StevePro7\Blogger\Cloud\CloudSetupCheatSheet\CloudSetupCheatSheetI\archive\CloudSetupCheatSheetNotes
 ```
-k get po -o wide
-cd /path/to/master_ssh_key
+kubectl get po -o wide
+cd ~/.ssh
 ssh -i master_ssh_key ec2-user@node-ip-address
-ssh -i master_ssh_key ubuntu@node-ip-address
-ssh -i master_ssh_key root@node-ip-address
+#ssh -i master_ssh_key ubuntu@node-ip-address
+#ssh -i master_ssh_key root@node-ip-address
 ```
 
 
