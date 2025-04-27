@@ -1,4 +1,4 @@
-# Cloud Setup Cheat Sheet AWS-AKS
+# Cloud Setup Cheat Sheet AZR-AKS
 dd-mmm-2025
 <br />
 Instructions for Cloud Setup Cheat Sheet blog post
