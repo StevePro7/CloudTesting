@@ -1,4 +1,4 @@
-# Cloud Setup Cheat Sheet
+# Cloud Setup Cheat Sheet AWS-AKS
 dd-mmm-2025
 <br />
 Instructions for Cloud Setup Cheat Sheet blog post
@@ -41,7 +41,7 @@ az group create --name stevepro-azraks-rg --location northeurope --debug
 az ad sp create-for-rbac --name ${USER}-sp --skip-assignment
 ```
 
-# 01	OUTPUT
+# 00	OUTPUT
 ```
 {
     "appId": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
@@ -51,14 +51,14 @@ az ad sp create-for-rbac --name ${USER}-sp --skip-assignment
     "tenant": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
 }
 ```
-# 01	EXPORT
+# 00	EXPORT
 ```
 export AZ_SP_ID=<value_from_appId>
 export AZ_SP_PASSWORD=<value_from_password>
 ```
 
 # Kubernetes [remote]
-# 02	create cluster
+# 01	create cluster
 ```
 az aks create --name stevepro-azraks            \
     --resource-group stevepro-azraks-rg         \
@@ -73,7 +73,7 @@ az aks create --name stevepro-azraks            \
     --network-plugin azure --debug
 ```
 
-# 04	get credentials
+# 02	get credentials
 ```
 export KUBECONFIG=~/.kube/config
 az aks get-credentials --name stevepro-azraks   \
@@ -106,7 +106,7 @@ kubectl delete -f Kubernetes.yaml
 kubectl delete ns test-ns
 ```
 
-# 05	delete cluster
+# 06	delete cluster
 ```
 az aks delete --name stevepro-azraks            \
     --resource-group stevepro-azraks-rg
