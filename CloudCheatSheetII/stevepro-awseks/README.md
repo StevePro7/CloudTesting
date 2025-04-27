@@ -80,7 +80,7 @@ iam:
 addons:
 - name: aws-ebs-csi-driver
   version: v1.38.1-eksbuild.2
-  serviceAccountRoleARN: arn:aws:iam::476230071208:role/stevepro-aws-eks-AmazonEKS_EBS_CSI_DriverRole
+  serviceAccountRoleARN: arn:aws:iam::4xxxxxxxxxx8:role/stevepro-aws-eks-AmazonEKS_EBS_CSI_DriverRole
 - name: vpc-cni
   version: v1.19.2-eksbuild.1
 - name: coredns
