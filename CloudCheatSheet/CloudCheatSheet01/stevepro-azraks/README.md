@@ -109,5 +109,5 @@ kubectl delete ns test-ns
 # 05	delete cluster
 ```
 az aks delete --name stevepro-azraks            \
-    --resource-group stevepro-azraks
+    --resource-group stevepro-azraks-rg
 ```
