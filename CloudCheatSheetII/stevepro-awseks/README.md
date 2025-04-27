@@ -119,6 +119,33 @@ eksctl scale nodegroup                                    \
     --verbose 5
 ```
 
+COMMAND #03 DeployTest
+```
+kubectl create ns test-ns
+kubectl config set-context --current --namespace=test-ns
+kubectl apply -f Kubernetes.yaml
+kubectl port-forward service/flask-api-service 8080:80
+curl http://localhost:8080
+```
+
+COMMAND #04 Shell into Node - TODO
+Ref: 
+~\GitHub\StevePro7\Blogger\Cloud\CloudSetupCheatSheet\CloudSetupCheatSheetI\archive\CloudSetupCheatSheetNotes
+```
+kubectl get po -o wide
+cd ~/.ssh
+ssh -i master_ssh_key ec2-user@node-ip-address
+# ssh -i master_ssh_key ubuntu@node-ip-address
+# ssh -i master_ssh_key root@node-ip-address
+```
+
+COMMAND #05 Cleanup
+```
+kubectl delete -f Kubernetes.yaml
+kubectl delete ns test-ns
+```
+
+
 # 06 delete
 kubectl delete -f Kubernetes.yaml
 ```
@@ -129,30 +156,3 @@ eksctl delete cluster                                     \
 ```
 
 
-COMMAND #03 DeployTest
-```
-kubectl create ns test-ns
-kubectl config set-context --current --namespace=test-ns
-kubectl apply -f Kubernetes.yaml
-kubectl port-forward service/flask-api-service 8080:80
-curl http://localhost:8080
-```
-
-
-COMMAND #04 Shell into Node - TODO
-Ref: 
-~\GitHub\StevePro7\Blogger\Cloud\CloudSetupCheatSheet\CloudSetupCheatSheetI\archive\CloudSetupCheatSheetNotes
-```
-kubectl get po -o wide
-cd ~/.ssh
-ssh -i master_ssh_key ec2-user@node-ip-address
-#ssh -i master_ssh_key ubuntu@node-ip-address
-#ssh -i master_ssh_key root@node-ip-address
-```
-
-
-COMMAND #05 Cleanup
-```
-kubectl delete -f Kubernetes.yaml
-kubectl delete ns test-ns
-```
