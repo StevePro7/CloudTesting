@@ -1,11 +1,15 @@
-# Cloud Setup Cheat Sheet AWS-EKS
+## Amazon EKS
 dd-mmm-2025
 <br />
 Instructions for Cloud Setup Cheat Sheet blog post
 <br />URL
 <br /><br />
 
-Master SSH Key
+Amazon provides Elastic Kubernetes Service as a fully managed Kubernetes container orchestration service.
+<br />
+Follow all instructions below in order to provision a Kubernetes cluster and test its functionality end-to-end.
+
+#### Master SSH Key
 ```
 cd ~/.ssh
 ssh-keygen -t rsa -b 4096 -N '' -f master_ssh_key
@@ -13,18 +17,18 @@ eval $(ssh-agent -s)
 ssh-add master_ssh_key
 ```
 
-eksctl
+#### eksctl
 ```
 curl --silent --location "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 sudo mv /tmp/eksctl /usr/local/bin
 ```
 
-Pre-Requisites
+#### Pre-Requisites
 ```
 aws sso login
 ```
 
-Check resources
+#### Check Resources
 ```
 aws ec2 describe-instances --query 'Reservations[*].Instances[*].InstanceId' --output table
 aws ec2 describe-addresses --query 'Addresses[*].PublicIp' --output table
@@ -50,8 +54,7 @@ aws sqs list-queues --query 'QueueUrls' --output table
 aws ssm describe-parameters --query 'Parameters[*].Name' --output table
 ```
 
-Kubernetes [remote]
-# 00	cluster YAML
+#### Cluster YAML
 ```
 kind: ClusterConfig
 apiVersion: eksctl.io/v1alpha5
@@ -101,14 +104,14 @@ nodeGroups:
       - "true"
 ```
 
-# 01	create cluster
+#### Create Cluster
 ```
 eksctl create cluster -f ~/stevepro-awseks/cluster.yaml   \
     --kubeconfig ~/stevepro-awseks/kubeconfig             \
     --verbose 5
 ```
 
-# 02	scale nodegroup
+#### Scale Nodegroup
 ```
 eksctl scale nodegroup                                    \
     --cluster=stevepro-aws-eks                            \
@@ -119,7 +122,7 @@ eksctl scale nodegroup                                    \
     --verbose 5
 ```
 
-COMMAND #03 DeployTest
+#### Deploy Test
 ```
 kubectl create ns test-ns
 kubectl config set-context --current --namespace=test-ns
@@ -128,7 +131,12 @@ kubectl port-forward service/flask-api-service 8080:80
 curl http://localhost:8080
 ```
 
-COMMAND #04 Shell into Node - TODO
+#### Output
+```
+Hello World (Python)!
+```
+
+#### Shell into Node
 Ref: 
 ~\GitHub\StevePro7\Blogger\Cloud\CloudSetupCheatSheet\CloudSetupCheatSheetI\archive\CloudSetupCheatSheetNotes
 ```
@@ -139,20 +147,17 @@ ssh -i master_ssh_key ec2-user@node-ip-address
 # ssh -i master_ssh_key root@node-ip-address
 ```
 
-COMMAND #05 Cleanup
+#### Cleanup
 ```
 kubectl delete -f Kubernetes.yaml
 kubectl delete ns test-ns
 ```
 
 
-# 06 delete
-kubectl delete -f Kubernetes.yaml
+#### Delete Cluster
 ```
 eksctl delete cluster                                     \
     --name=stevepro-aws-eks                               \
     --region eu-west-1                                    \
     --force
 ```
-
-

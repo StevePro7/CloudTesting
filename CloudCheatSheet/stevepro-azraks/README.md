@@ -4,6 +4,7 @@ dd-mmm-2025
 Instructions for Cloud Setup Cheat Sheet blog post
 <br />URL
 <br /><br />
+
 Microsoft provides Azure Kubernetes Services as fully managed Kubernetes container orchestration service.
 <br />
 Follow all instructions below in order to provision a Kubernetes cluster and end-to-end test its functionality. 

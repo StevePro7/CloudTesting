@@ -4,14 +4,20 @@ dd-mmm-2025
 Instructions for Cloud Setup Cheat Sheet blog post
 <br />URL
 <br /><br />
-Pre-Requisites
+
+Google provides the Google Kubernetes Engine as fully managed Kubernetes container orchestration service.
+<br />
+Follow all instructions below in order to provision a Kubernetes cluster and test its functionality end-to-end.
+
+#### Pre-Requisites
 ```
 gcloud auth login
 gcloud auth application-default login
 gcloud auth configure-docker
 gcloud config set project SteveProProject
 ```
-Check resources
+
+#### Check Resources
 ```
 gcloud compute instances list
 gcloud compute disks list
@@ -21,8 +27,7 @@ gcloud compute addresses list
 gcloud container clusters list
 ```
 
-Kubernetes [remote]
-COMMAND #01 Create
+#### Create Cluster
 ```
 gcloud container clusters create stevepro-gcp-gke               \
     --project=steveproproject                                   \
@@ -43,14 +48,14 @@ gcloud container clusters create stevepro-gcp-gke               \
     --quiet --verbosity debug
 ```
 
-COMMAND #02 Credentials
+#### Get Credentials
 ```
 gcloud container clusters get-credentials stevepro-gcp-gke      \
     --zone=europe-west1-b                                       \
     --quiet --verbosity debug
 ```
 
-COMMAND #03 DeployTest
+#### Deploy Test
 ```
 kubectl create ns test-ns
 kubectl config set-context --current --namespace=test-ns
@@ -59,7 +64,12 @@ kubectl port-forward service/flask-api-service 8080:80
 curl http://localhost:8080
 ```
 
-COMMAND #04 Shell into Node
+#### Output
+```
+Hello World (Python)!
+```
+
+#### Shell into Node
 ```
 mkdir -p ~/GitHub/luksa
 cd ~/GitHub/luksa
@@ -70,13 +80,13 @@ kubectl get nodes
 ./kubectl-ssh node gke-stevepro-gcp-gke-default-pool-0b4ca8ca-sjpj
 ```
 
-COMMAND #05 Cleanup
+#### Cleanup
 ```
 kubectl delete -f Kubernetes.yaml
 kubectl delete ns test-ns
 ```
 
-COMMAND #06 Destroy
+#### Delete Cluster
 ```
 gcloud container clusters delete stevepro-gcp-gke               \
     --zone europe-west1-b                                       \
