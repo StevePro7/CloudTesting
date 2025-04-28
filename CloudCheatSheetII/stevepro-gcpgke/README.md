@@ -1,4 +1,4 @@
-# Cloud Setup Cheat Sheet GCP-GKE
+# Google GKE
 dd-mmm-2025
 <br />
 Instructions for Cloud Setup Cheat Sheet blog post
