@@ -4,6 +4,9 @@ dd-mmm-2025
 Instructions for Cloud Setup Cheat Sheet blog post
 <br />URL
 <br /><br />
+Microsoft provides Azure Kubernetes Services as fully managed Kubernetes container orchestration service.
+<br />
+Follow all instructions below in order to provision a Kubernetes cluster and end-to-end test its functionality. 
 
 #### Master SSH Key
 ```
@@ -13,12 +16,12 @@ eval $(ssh-agent -s)
 ssh-add master_ssh_key
 ```
 
-Pre-Requisites
+#### Pre-Requisites
 ```
 az login
 ```
 
-Check Resources
+#### Check Resources
 ```
 az account list --output table
 az group list --output table
@@ -31,17 +34,17 @@ az storage account list --output table
 az network public-ip list --output table
 ```
 
-Resource Group
+#### Resource Group
 ```
 az group create --name stevepro-azraks-rg --location northeurope --debug
 ```
 
-Security Principal
+#### Security Principal
 ```
 az ad sp create-for-rbac --name ${USER}-sp --skip-assignment
 ```
 
-Output
+#### Output
 ```
 {
     "appId": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
@@ -52,13 +55,13 @@ Output
 }
 ```
 
-Export
+#### Export
 ```
 export AZ_SP_ID=<value_from_appId>
 export AZ_SP_PASSWORD=<value_from_password>
 ```
 
-Create Cluster
+#### Create Cluster
 ```
 az aks create --name stevepro-azraks            \
     --resource-group stevepro-azraks-rg         \
@@ -73,14 +76,14 @@ az aks create --name stevepro-azraks            \
     --network-plugin azure --debug
 ```
 
-Get Credentials
+#### Get Credentials
 ```
 export KUBECONFIG=~/.kube/config
 az aks get-credentials --name stevepro-azraks   \
 	--resource-group stevepro-azraks-rg --file ${KUBECONFIG}
 ```
 
-Deploy Test
+#### Deploy Test
 ```
 kubectl create ns test-ns
 kubectl config set-context --current --namespace=test-ns
@@ -89,12 +92,12 @@ kubectl port-forward service/flask-api-service 8080:80
 curl http://localhost:8080
 ```
 
-Output
+#### Output
 ```
 Hello World (Python)!
 ```
 
-Shell into Node
+#### Shell into Node
 ```
 mkdir -p ~/GitHub/luksa
 cd ~/GitHub/luksa
@@ -105,13 +108,13 @@ kubectl get nodes
 ./kubectl-ssh node TODO-get-AKS-node
 ```
 
-Cleanup
+#### Cleanup
 ```
 kubectl delete -f Kubernetes.yaml
 kubectl delete ns test-ns
 ```
 
-Delete Cluster
+#### Delete Cluster
 ```
 az aks delete --name stevepro-azraks            \
     --resource-group stevepro-azraks-rg
