@@ -50,7 +50,6 @@ az ad sp create-for-rbac --name ${USER}-sp --skip-assignment
 {
     "appId": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
     "displayName": "stevepro-sp",
-    "name": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
     "password": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
     "tenant": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
 }
@@ -69,7 +68,7 @@ az aks create --name stevepro-azraks            \
     --dns-name-prefix stevepro-azraks           \
     --node-count 3                              \
     --node-vm-size Standard_D2s_v3              \
-    --kubernetes-version 1.28                   \
+    --kubernetes-version 1.31                   \
     --ssh-key-value ~/.ssh/master_ssh_key.pub   \
     --service-principal ${AZ_SP_ID}             \
     --client-secret ${AZ_SP_PASSWORD}           \
@@ -81,7 +80,7 @@ az aks create --name stevepro-azraks            \
 ```
 export KUBECONFIG=~/.kube/config
 az aks get-credentials --name stevepro-azraks   \
-	--resource-group stevepro-azraks-rg --file ${KUBECONFIG}
+	--resource-group stevepro-azraks-rg --file ~/.kube/config
 ```
 
 #### Deploy Test
@@ -106,7 +105,7 @@ git clone https://github.com/luksa/kubectl-plugins.git
 cd kubectl-plugins
 chmod +x kubectl-ssh
 kubectl get nodes
-./kubectl-ssh node TODO-get-AKS-node
+./kubectl-ssh node aks-nodepool1-20972701-vmss000000
 ```
 
 #### Cleanup
