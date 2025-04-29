@@ -35,7 +35,7 @@ az storage account list --output table
 az network public-ip list --output table
 ```
 
-#### Resource Group
+#### Create Group
 ```
 az group create --name stevepro-azraks-rg --location northeurope --debug
 ```
@@ -118,6 +118,10 @@ kubectl delete ns test-ns
 ```
 az aks delete --name stevepro-azraks            \
     --resource-group stevepro-azraks-rg
+```
+
+#### Delete Group
+```
 az group delete --name stevepro-azraks-rg --yes --no-wait
 az group delete --name NetworkWatcherRG --yes --no-wait
 ```
