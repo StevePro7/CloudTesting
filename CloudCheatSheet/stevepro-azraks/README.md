@@ -118,4 +118,6 @@ kubectl delete ns test-ns
 ```
 az aks delete --name stevepro-azraks            \
     --resource-group stevepro-azraks-rg
+az group delete --name stevepro-azraks-rg --yes --no-wait
+az group delete --name NetworkWatcherRG --yes --no-wait
 ```
