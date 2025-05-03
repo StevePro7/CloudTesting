@@ -7,7 +7,7 @@ Tue, 31st August, 2021
 https://steveproxna.blogspot.com/2021/08/docker-cheat-sheet.html
 
 ### Kubernetes Cheat Sheet
-Wed, 15th September, 2021s
+Wed, 15th September, 2021
 <br />
 https://steveproxna.blogspot.com/2021/09/kubernetes-cheat-sheet.html
 
