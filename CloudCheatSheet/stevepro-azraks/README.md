@@ -1,8 +1,7 @@
 ## Azure AKS
-dd-mmm-2025
+05-May-2025
 <br />
-Instructions for Cloud Setup Cheat Sheet blog post
-<br />URL
+Instructions for [Cloud Setup Cheat Sheet](https://steveproxna.blogspot.com/2025/05/cloud-setup-cheat-sheet.html) blog post.
 <br /><br />
 
 Microsoft provides Azure Kubernetes Services as fully managed Kubernetes container orchestration service.

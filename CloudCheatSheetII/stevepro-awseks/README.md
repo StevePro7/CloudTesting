@@ -1,8 +1,7 @@
 ## Amazon EKS
-dd-mmm-2025
+02-Jun-2025
 <br />
-Instructions for Cloud Setup Cheat Sheet blog post
-<br />URL
+Instructions for [Cloud Setup Cheat Sheet II](https://steveproxna.blogspot.com/2025/06/cloud-setup-cheat-sheet-ii.html) blog post.
 <br /><br />
 
 Amazon provides Elastic Kubernetes Service as a fully managed Kubernetes container orchestration service.
